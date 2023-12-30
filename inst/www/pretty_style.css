@@ -1,0 +1,249 @@
+.progress.shiny-file-input-progress {
+  display: none
+}
+
+.btn-margin {
+  margin-right: 32px;
+}
+
+.btn-circle button {
+  border-radius: 50%;
+}
+
+.box-border {
+  width: auto !important;
+  margin: 15px;
+  border-radius: 2px; 
+  -webkit-box-shadow: 0 1px 6px 0 rgba(0,0,0,.12), 0 1px 6px 0 rgba(0,0,0,.12); 
+  box-shadow: 0 1px 6px 0 rgba(0,0,0,.12), 0 1px 6px 0 rgba(0,0,0,.12); 
+  padding: 10px 20px 10px 20px;
+}
+
+/*Style options dropdown menu*/
+.box.box-solid>.box-header .options-dropdown>.btn-sm {
+  background: transparent;
+  font-size: 20px;
+  margin-top: -3px;
+}
+.box.box-solid>.box-header .options-dropdown>.btn-sm:hover {
+  background: transparent;
+}
+.box.box-solid>.box-header .options-dropdown {
+  color: black;
+}
+
+/*Don't show cursor for disabled elements*/
+.disabled-inputs {
+  /*pointer-events: none;*/
+  cursor: not-allowed !important;
+  /*opacity: 0.8;*/
+}
+
+.disabled {
+  cursor: default !important;
+  opacity: 1 !important;
+}
+
+li.treeview>a.disabled {
+  opacity: 0.6 !important;
+  pointer-events: none;
+}
+
+li.treeview.disabled {
+  pointer-events: none;
+}
+
+/*Make header buttons/tabs*/
+#tab .btn-group {
+  margin-top: -8px;
+}
+
+#tab button {
+  background: transparent;
+  color: lightblue;
+  border: none;
+  box-shadow: none;
+  font-size: 22px;
+  font-variant: all-small-caps;
+  border-radius: 0;
+  padding-left: 0px;
+  padding-right: 0px;
+}
+
+#tab button.active {
+  color: white;
+  font-weight: 900;
+  border-bottom: 1.5px white solid;
+}
+
+#tab .fa-chevron-right {
+  color: lightblue;
+  font-size: 18px;
+  vertical-align: text-bottom;
+  margin-left: 12px;
+  margin-right: 12px;
+}
+
+/*Make modern tabs*/
+.modern_tab_btns>.radio-group-buttons button {
+  background: inherit;
+  box-shadow: none;
+  border-radius: 4px 4px 0 0 !important;
+  border-color: white;
+  border-bottom-color: #ecf0f1;
+  border-top-width: 4px;
+  color: slategray;
+  font-size: 16px;
+}
+
+.modern_tab_btns>.radio-group-buttons button.active {
+  font-weight: bold;
+  color: black;
+  border-top-color: cadetblue;
+  /*border-top-color: #3c8dbc;*/
+  border-bottom-color: white;
+  border-left-color: #ecf0f1;
+  border-right-color: #ecf0f1;
+}
+
+.modern_tab_btns>.radio-group-buttons button:hover,
+.modern_tab_btns>.radio-group-buttons button:focus {
+  background: transparent;
+  color: darkslategray;
+}
+
+.modern_tab_btns>.radio-group-buttons button.active:hover,
+.modern_tab_btns>.radio-group-buttons button.active:focus {
+  color: black;
+}
+
+/*Adjust css style of sidebar menu item titles*/
+.sidebar-menu>li>a {
+  font-size: 16px;
+  font-weight: 500;
+}
+
+/*Sidebar*/
+.skin-blue .main-sidebar {
+  /*background: linear-gradient(#146175, #156276, #16657a, #196a7f, #1c7085, #20768c, #237d93, #27849b, #2a8aa1, #2d8ea6, #2e92aa, #2f93ab);*/
+  /*background: linear-gradient(#2f93ab, #3395ac, #3c9bb0, #4aa3b7, #59aebe, #69bac7, #7ac6d0, #99dde1)/*, #AFEEEF)*/*/
+}
+.skin-blue .main-header .logo,
+.skin-blue .main-header .logo:hover {
+  /*background-color: #146175;*/
+}
+
+.skin-blue .sidebar-menu>li>.treeview-menu {
+  margin: 0 0 0 0px;
+}
+
+.skin-blue .sidebar-menu>li>a {
+  color: #fff !important;
+}
+
+.skin-blue .sidebar-menu>li>a:hover,
+.skin-blue .sidebar-menu>li.active>a, 
+.skin-blue .sidebar-menu>li:hover>a {
+  border-left: 4px solid #f39c12 !important; */
+  /*border-left: 3px solid paleturquoise !important; */
+}
+
+.submenu-open {
+  background: #1e282c;
+  /*border-left: 3px solid paleturquoise !important; */
+}
+
+/*Change color of slider input widgets*/
+.irs--shiny .irs-bar {
+  border-top: 1px solid #35a4bf;
+  border-bottom: 1px solid #35a4bf;
+  background: #35a4bf;
+}
+.irs--shiny .irs-from, 
+.irs--shiny .irs-to, 
+.irs--shiny .irs-single {
+  background: #35a4bf;
+}
+
+/*Change background color when sidebar is longer than main content*/
+.skin-blue .wrapper {
+  background: whitesmoke;
+}
+
+/*Change box colors*/
+.box.box-solid.box-lightseagreen {
+  border: 1px solid lightseagreen;
+}
+.box.box-solid.box-lightseagreen>.box-header {
+  background: lightseagreen
+}
+
+.box.box-solid.box-slategray {
+  border: 1px solid slategray;
+}
+.box.box-solid.box-slategray>.box-header {
+  background: slategray;
+}
+
+.box.box-solid.box-cadetblue {
+  border: 1px solid cadetblue;
+}
+.box.box-solid.box-cadetblue>.box-header {
+  background: cadetblue;
+}
+
+.box.box-solid.box-mediumaquamarine {
+  border: 1px solid mediumaquamarine;
+}
+.box.box-solid.box-mediumaquamarine>.box-header {
+  background: mediumaquamarine;
+}
+
+.box.box-solid.box-mediumturquoise {
+  border: 1px solid mediumturquoise;
+}
+.box.box-solid.box-mediumturquoise>.box-header {
+  background: mediumturquoise;
+}
+
+.box.box-solid.box-steelblue {
+  border: 1px solid steelblue;
+}
+.box.box-solid.box-steelblue>.box-header {
+  background: steelblue;
+}
+
+.box.box-solid.box-teal {
+  border: 1px solid teal;
+}
+.box.box-solid.box-teal>.box-header {
+  background: teal;
+}
+
+.box.box-solid.box-skyblue {
+  border: 1px solid skyblue;
+}
+.box.box-solid.box-skyblue>.box-header {
+  background: skyblue;
+}
+
+/*Modify radio group buttons (orange)*/
+#eda_tab>div>.btn-group-lg>.btn {
+  padding: 6px 32px;
+  border: 2px solid #f39c12;
+  background-color: #f39c122e;
+}
+#eda_tab>div>.btn-group-lg>.btn.active {
+  background-color: #f39c12ad;
+  font-weight: bold;
+}
+
+/*Fix uneven file upload button*/
+span.btn-file {
+  padding-bottom: 7px;
+}
+
+/*Sidebar styling*/
+.sidebar-subheader {
+  margin-left: 6px;
+}
