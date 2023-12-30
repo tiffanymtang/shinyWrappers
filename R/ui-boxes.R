@@ -3,6 +3,7 @@
 #' @description Wrapper around `shinydashboardPlus::box()`.
 #'
 #' @inheritParams shinydashboardPlus::box
+#' @param color Box outline color.
 #' @param box_only If `TRUE`, only return the box and not the box wrapped inside
 #'   `shiny::fluidRow()`.
 #' @param ... Arguments passed to `shinydashboardPlus::box()`.
@@ -19,11 +20,27 @@ prettyBox <- function(..., title = NULL, width = 12, color = NULL,
   } else {
     shiny_wrapper <- function(x) x
   }
+  if (!is.null(color)) {
+    color_fun <- function(x) {
+      x %>%
+        tagAppendAttributes(
+          style = css_styler(border = sprintf("1px solid %s", color)),
+          .cssSelector = ".box"
+        ) %>%
+        tagAppendAttributes(
+          style = css_styler(background = color),
+          .cssSelector = ".box-header"
+        )
+    }
+  } else {
+    color_fun <- function(x) x
+  }
   shiny_wrapper(
     shinydashboardPlus::box(
       ..., title = title, color = color,
       width = width, status = status, solidHeader = solidHeader
-    )
+    ) %>%
+      color_fun()
   )
 }
 
