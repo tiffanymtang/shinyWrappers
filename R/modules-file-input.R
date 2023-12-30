@@ -38,30 +38,41 @@ fileInputUI <- function(id,
       accept = accept
     ),
     add_tooltip(ns("file"), tooltip),
-    # options for .txt file
-    shiny::conditionalPanel(
-      condition = sprintf("output['%1$s'] == '.txt'", ns("filetype")),
-      radio_buttons(
-        inputId = ns("sep"),
-        label = "Separator",
-        choices = c("Comma" = ",", "Semicolon" = ";", "Tab" = "\t"),
-        inline = TRUE
-      )
-    ) %>%
-      set_margins(left = indent_size),
-    # options for .csv file
+    # file input options
     shiny::conditionalPanel(
       condition = sprintf(
-        "output['%1$s'] == '.csv' | output['%1$s'] == '.txt'", ns("filetype")
+        "output['%1$s'] == true && output['%2$s'] !== '.rds'",
+        ns("fileuploaded"), ns("filetype")
       ),
-      material_switch(
-        inputId = ns("header"),
-        label = "Header",
-        value = TRUE,
-        status = "primary"
+      # options for .txt file
+      shiny::conditionalPanel(
+        condition = sprintf("output['%1$s'] == '.txt'", ns("filetype")),
+        radio_buttons(
+          inputId = ns("sep"),
+          label = htmltools::tags$i("Separator"),
+          choices = c("Comma" = ",", "Semicolon" = ";", "Tab" = "\t"),
+          inline = TRUE
+        )
+      ),
+      # options for .csv/.txt file
+      shiny::conditionalPanel(
+        condition = sprintf(
+          "output['%1$s'] == '.csv' | output['%1$s'] == '.txt'", ns("filetype")
+        ),
+        material_switch(
+          inputId = ns("header"),
+          label = htmltools::tags$i("Header"),
+          value = TRUE,
+          status = "primary"
+        )
       )
     ) %>%
-      set_margins(left = indent_size)
+      htmltools::tagAppendAttributes(
+        style = css_styler(
+          `margin-left` = indent_size,
+          `margin-top` = "-0.75em"
+        )
+      )
   )
 }
 
@@ -74,6 +85,11 @@ fileInputServer <- function(id, default_data = NULL) {
       stringr::str_extract(input$file$datapath, "(\\.[^.]*)$")
     })
     shiny::outputOptions(output, "filetype", suspendWhenHidden = FALSE)
+
+    output$fileuploaded <- reactive({
+      length(stringr::str_extract(input$file$datapath, "(\\.[^.]*)$")) > 0
+    })
+    outputOptions(output, "fileuploaded", suspendWhenHidden = FALSE)
 
     reactive({
       file_type <- stringr::str_extract(input$file$datapath, "(\\.[^.]*)$")

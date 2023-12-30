@@ -2,11 +2,22 @@
 .progress.shiny-file-input-progress {
   height: unset;
   margin-bottom: 0px;
+  background-color: transparent;
+  border-radius: 24px;
 }
 
-/*Fix uneven file upload button*/
-span.btn-file {
-  padding-bottom: 7px;
+/*Style progress bar below file upload widget*/
+.progress.shiny-file-input-progress>.progress-bar {
+  font-size: 12px;
+  line-height: 13px;
+  background-color: #868e95;
+  border-radius: 24px;
+}
+
+/*Style file upload widget*/
+.form-group>.input-group>.form-control {
+  border-bottom-right-radius: 4px;
+  border-top-right-radius: 4px;
 }
 
 /*Change color of slider input widgets*/
