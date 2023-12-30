@@ -1,22 +1,24 @@
+/*Reduce space below file upload widget*/
 .progress.shiny-file-input-progress {
-  display: none
+  height: unset;
+  margin-bottom: 0px;
 }
 
-.btn-margin {
-  margin-right: 32px;
+/*Fix uneven file upload button*/
+span.btn-file {
+  padding-bottom: 7px;
 }
 
-.btn-circle button {
-  border-radius: 50%;
+/*Change color of slider input widgets*/
+.irs--shiny .irs-bar {
+  border-top: 1px solid #35a4bf;
+  border-bottom: 1px solid #35a4bf;
+  background: #35a4bf;
 }
-
-.box-border {
-  width: auto !important;
-  margin: 15px;
-  border-radius: 2px; 
-  -webkit-box-shadow: 0 1px 6px 0 rgba(0,0,0,.12), 0 1px 6px 0 rgba(0,0,0,.12); 
-  box-shadow: 0 1px 6px 0 rgba(0,0,0,.12), 0 1px 6px 0 rgba(0,0,0,.12); 
-  padding: 10px 20px 10px 20px;
+.irs--shiny .irs-from, 
+.irs--shiny .irs-to, 
+.irs--shiny .irs-single {
+  background: #35a4bf;
 }
 
 /*Style options dropdown menu*/
@@ -29,7 +31,28 @@
   background: transparent;
 }
 .box.box-solid>.box-header .options-dropdown {
+  z-index: 100;  /*needs to be >99 to be in front of selectVizUI() buttons*/
   color: black;
+}
+
+/*Class to add margin to button*/
+.btn-margin {
+  margin-right: 32px;
+}
+
+/*Class to make button circular*/
+.btn-circle button {
+  border-radius: 50%;
+}
+
+/*Class to add box border*/
+.box-border {
+  width: auto !important;
+  margin: 15px;
+  border-radius: 2px; 
+  -webkit-box-shadow: 0 1px 6px 0 rgba(0,0,0,.12), 0 1px 6px 0 rgba(0,0,0,.12); 
+  box-shadow: 0 1px 6px 0 rgba(0,0,0,.12), 0 1px 6px 0 rgba(0,0,0,.12); 
+  padding: 10px 20px 10px 20px;
 }
 
 /*Don't show cursor for disabled elements*/
@@ -38,26 +61,22 @@
   cursor: not-allowed !important;
   /*opacity: 0.8;*/
 }
-
 .disabled {
   cursor: default !important;
   opacity: 1 !important;
 }
-
 li.treeview>a.disabled {
   opacity: 0.6 !important;
   pointer-events: none;
 }
-
 li.treeview.disabled {
   pointer-events: none;
 }
 
-/*Make header buttons/tabs*/
+/*Make header buttons/tabs on top bar*/
 #tab .btn-group {
   margin-top: -8px;
 }
-
 #tab button {
   background: transparent;
   color: lightblue;
@@ -69,13 +88,11 @@ li.treeview.disabled {
   padding-left: 0px;
   padding-right: 0px;
 }
-
 #tab button.active {
   color: white;
   font-weight: 900;
   border-bottom: 1.5px white solid;
 }
-
 #tab .fa-chevron-right {
   color: lightblue;
   font-size: 18px;
@@ -95,7 +112,6 @@ li.treeview.disabled {
   color: slategray;
   font-size: 16px;
 }
-
 .modern_tab_btns>.radio-group-buttons button.active {
   font-weight: bold;
   color: black;
@@ -105,25 +121,34 @@ li.treeview.disabled {
   border-left-color: #ecf0f1;
   border-right-color: #ecf0f1;
 }
-
 .modern_tab_btns>.radio-group-buttons button:hover,
 .modern_tab_btns>.radio-group-buttons button:focus {
   background: transparent;
   color: darkslategray;
 }
-
 .modern_tab_btns>.radio-group-buttons button.active:hover,
 .modern_tab_btns>.radio-group-buttons button.active:focus {
   color: black;
 }
 
-/*Adjust css style of sidebar menu item titles*/
+/*Modify radio group buttons (orange)*/
+#eda_tab>div>.btn-group-lg>.btn {
+  padding: 6px 32px;
+  border: 2px solid #f39c12;
+  background-color: #f39c122e;
+}
+#eda_tab>div>.btn-group-lg>.btn.active {
+  background-color: #f39c12ad;
+  font-weight: bold;
+}
+
+/*Modify style of sidebar menu item titles*/
 .sidebar-menu>li>a {
   font-size: 16px;
   font-weight: 500;
 }
 
-/*Sidebar*/
+/*Modify sidebar style*/
 .skin-blue .main-sidebar {
   /*background: linear-gradient(#146175, #156276, #16657a, #196a7f, #1c7085, #20768c, #237d93, #27849b, #2a8aa1, #2d8ea6, #2e92aa, #2f93ab);*/
   /*background: linear-gradient(#2f93ab, #3395ac, #3c9bb0, #4aa3b7, #59aebe, #69bac7, #7ac6d0, #99dde1)/*, #AFEEEF)*/*/
@@ -132,15 +157,12 @@ li.treeview.disabled {
 .skin-blue .main-header .logo:hover {
   /*background-color: #146175;*/
 }
-
 .skin-blue .sidebar-menu>li>.treeview-menu {
   margin: 0 0 0 0px;
 }
-
 .skin-blue .sidebar-menu>li>a {
   color: #fff !important;
 }
-
 .skin-blue .sidebar-menu>li>a:hover,
 .skin-blue .sidebar-menu>li.active>a, 
 .skin-blue .sidebar-menu>li:hover>a {
@@ -153,16 +175,9 @@ li.treeview.disabled {
   /*border-left: 3px solid paleturquoise !important; */
 }
 
-/*Change color of slider input widgets*/
-.irs--shiny .irs-bar {
-  border-top: 1px solid #35a4bf;
-  border-bottom: 1px solid #35a4bf;
-  background: #35a4bf;
-}
-.irs--shiny .irs-from, 
-.irs--shiny .irs-to, 
-.irs--shiny .irs-single {
-  background: #35a4bf;
+/*Modify sidebar styling*/
+.sidebar-subheader {
+  margin-left: 6px;
 }
 
 /*Change background color when sidebar is longer than main content*/
@@ -225,25 +240,4 @@ li.treeview.disabled {
 }
 .box.box-solid.box-skyblue>.box-header {
   background: skyblue;
-}
-
-/*Modify radio group buttons (orange)*/
-#eda_tab>div>.btn-group-lg>.btn {
-  padding: 6px 32px;
-  border: 2px solid #f39c12;
-  background-color: #f39c122e;
-}
-#eda_tab>div>.btn-group-lg>.btn.active {
-  background-color: #f39c12ad;
-  font-weight: bold;
-}
-
-/*Fix uneven file upload button*/
-span.btn-file {
-  padding-bottom: 7px;
-}
-
-/*Sidebar styling*/
-.sidebar-subheader {
-  margin-left: 6px;
 }

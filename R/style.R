@@ -8,13 +8,20 @@ use_pretty_style <- function() {
     directoryPath = system.file("www", package = packageName())
   )
 
+  my_theme <- fresh::create_theme(
+    fresh::adminlte_color(light_blue = "#35a4bf"),
+    fresh::adminlte_sidebar(width = "315px", dark_color = "#2c3b41"),
+    fresh::adminlte_global(content_bg = "whitesmoke")
+  )
+
   shiny::tagList(
     htmltools::includeCSS(
       system.file(file.path("www", "pretty_style.css"), package = packageName())
     ),
     fresh::use_pretty(
       system.file(file.path("www", "pretty_fresh.css"), package = packageName())
-    )
+    ),
+    fresh::use_theme(my_theme)
   )
 }
 
