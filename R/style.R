@@ -78,14 +78,19 @@ set_margins <- function(obj,
 #'
 #' @inheritParams shinycssloaders::withSpinner
 #' @param obj Object to add spinner to.
+#' @param spinner Logical. Whether or not to add spinner.
 #'
 #' @examples
 #' ## DON'T RUN
 #' # shiny::htmlOutput({NAME OF UI ELEMENT}) %>% add_spinner()
 #'
 #' @export
-add_spinner <- function(obj, color = "#18bc9c") {
-  obj %>% shinycssloaders::withSpinner(color = "#18bc9c")
+add_spinner <- function(obj, spinner = TRUE, color = "#18bc9c") {
+  if (spinner) {
+    obj %>% shinycssloaders::withSpinner(color = color)
+  } else {
+    obj
+  }
 }
 
 
@@ -125,8 +130,13 @@ vspace <- function(size = "3px") {
 #' Add border class
 #'
 #' @param obj Object to add border to.
+#' @param border Logical. Whether or not to add border.
 #'
 #' @export
-add_border <- function(obj) {
-  obj %>% htmltools::tagAppendAttributes(class = "box-border")
+add_border <- function(obj, border = TRUE) {
+  if (border) {
+    obj %>% htmltools::tagAppendAttributes(class = "box-border")
+  } else {
+    obj
+  }
 }

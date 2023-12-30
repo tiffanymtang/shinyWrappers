@@ -25,13 +25,9 @@ NULL
 #' @export
 tableUI <- function(id, border = FALSE, spinner = FALSE) {
   ns <- shiny::NS(id)
-  out <- shiny::uiOutput(ns("table"))
-  if (border) {
-    out <- out %>% add_border()
-  }
-  if (spinner) {
-    out <- out %>% add_spinner()
-  }
+  out <- shiny::uiOutput(ns("table")) %>%
+    add_spinner(spinner) %>%
+    add_border(border)
   return(out)
 }
 
@@ -88,30 +84,18 @@ tableServer <- function(id, table_fun, table_options = TRUE,
     output$table_error <- shiny::renderText({error_msg})
 
     output$table <- shiny::renderUI({
-      if (spinner) {
-        spinner_fun <- add_spinner
-      } else {
-        spinner_fun <- function(x) x
-      }
-
-      if (border) {
-        border_fun <- add_border
-      } else {
-        border_fun <- function(x) x
-      }
-
       if (mode == "DT") {
         shiny::fluidPage(
           DT::DTOutput(session$ns("dt")) %>%
-            spinner_fun() %>%
-            border_fun(),
+            add_spinner(spinner) %>%
+            add_border(border),
           vspace()
         )
       } else if (mode == "kable") {
         shiny::fluidPage(
           shiny::htmlOutput(session$ns("kable")) %>%
-            spinner_fun() %>%
-            border_fun()
+            add_spinner(spinner) %>%
+            add_border(border)
         )
       } else {
         shiny::htmlOutput(session$ns("table_error"))

@@ -24,13 +24,9 @@ NULL
 #' @export
 plotUI <- function(id, border = FALSE, spinner = FALSE) {
   ns <- shiny::NS(id)
-  out <- shiny::uiOutput(ns("plot"))
-  if (border) {
-    out <- out %>% add_border()
-  }
-  if (spinner) {
-    out <- out %>% add_spinner()
-  }
+  out <- shiny::uiOutput(ns("plot")) %>%
+    add_spinner(spinner) %>%
+    add_border(border)
   return(out)
 }
 
@@ -164,12 +160,9 @@ plotServer <- function(id, plot_fun, plot_options = TRUE,
       } else {
         out <- shiny::htmlOutput(session$ns("plot_error"))
       }
-      if (border) {
-        out <- out %>% add_border()
-      }
-      if (spinner) {
-        out <- out %>% add_spinner()
-      }
+      out <- out %>%
+        add_spinner(spinner) %>%
+        add_border(border)
       return(out)
     })
   })
