@@ -299,7 +299,10 @@ plotGeomOptionsUI <- function(id,
 }
 
 
-#' Select visualization type (table, ggplot, plotly)
+#' Radio group button with icons
+#'
+#' @description Wrapper around \code{radio_group_buttons} with options to
+#'   display icons and float the buttons to the right.
 #'
 #' @inheritParams shinyWidgets::radioGroupButtons
 #' @param id Unique identifier.
@@ -307,13 +310,12 @@ plotGeomOptionsUI <- function(id,
 #' @param float_right Logical. Whether or not to float the buttons to the right.
 #' @param ... Additional arguments to pass to radio_group_buttons
 #'
-#' @export
-selectVizUI <- function(id,
-                        choices = c("ggplot", "plotly", "table"),
-                        selected = NULL, individual = FALSE, size = "normal",
-                        justified = FALSE, float_right = FALSE, ...) {
+#' @keywords internal
+iconRadioGroupUI <- function(id, ns_id, choices,
+                             selected = NULL, individual = FALSE,
+                             size = "normal", justified = FALSE,
+                             float_right = FALSE, ...) {
   ns <- shiny::NS(id)
-  choices <- match.arg(choices, several.ok = TRUE)
 
   if (float_right) {
     style <- css_styler(
@@ -323,11 +325,13 @@ selectVizUI <- function(id,
       `margin-right` = "15px"
     )
   } else {
-    style <- ""
+    style <- css_styler(
+      position = "relative"
+    )
   }
 
-  radio_group_buttons(
-    inputId = ns("display_viz"),
+  out <- radio_group_buttons(
+    inputId = ns(ns_id),
     label = NULL,
     choices = get_icons(choices),
     selected = selected,
@@ -338,4 +342,69 @@ selectVizUI <- function(id,
   ) %>%
     htmltools::tagAppendAttributes(class = "btn-margin", style = style) %>%
     display_inline()
+
+  if (float_right) {
+    # hack so that plotly plot tools don't overlap with buttons
+    hidden_out <- iconRadioGroupUI(
+      id = paste0(id, "_hidden"),
+      ns_id = ns_id,
+      choices = choices,
+      selected = selected,
+      individual = individual,
+      size = size,
+      justified = justified,
+      float_right = FALSE,
+      ...
+    ) %>%
+      htmltools::tagAppendAttributes(style = css_styler(visibility = "hidden"))
+    out <- shiny::tagList(out, hidden_out)
+  }
+
+  return(out)
+}
+
+
+#' Select visualization type (table, ggplot, plotly)
+#'
+#' @inheritParams iconRadioGroupUI
+#'
+#' @export
+selectVizUI <- function(id,
+                        choices = c("ggplot", "plotly", "table"),
+                        selected = NULL, individual = FALSE, size = "normal",
+                        justified = FALSE, float_right = FALSE, ...) {
+  iconRadioGroupUI(
+    id = id,
+    ns_id = "display_viz",
+    choices = choices,
+    selected = selected,
+    individual = individual,
+    size = size,
+    justified = justified,
+    float_right = float_right,
+    ...
+  )
+}
+
+
+#' Select geom type (point, line, etc.)
+#'
+#' @inheritParams iconRadioGroupUI
+#'
+#' @export
+selectGeomUI <- function(id,
+                         choices = "Please select variable(s) first",
+                         selected = NULL, individual = TRUE, size = "normal",
+                         justified = FALSE, float_right = FALSE, ...) {
+  iconRadioGroupUI(
+    id = id,
+    ns_id = "display_geom",
+    choices = choices,
+    selected = selected,
+    individual = individual,
+    size = size,
+    justified = justified,
+    float_right = float_right,
+    ...
+  )
 }

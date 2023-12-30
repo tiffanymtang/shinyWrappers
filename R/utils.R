@@ -60,11 +60,15 @@ get_icons <- function(icon_names, width = 20, height = 20, ...) {
       src = "chart-line.svg", width = width, height = height, ...
     )
   )
-  icon_names <- match.arg(
-    icon_names, choices = names(icons_vec), several.ok = TRUE
+
+  out <- lapply(
+    icon_names,
+    function(icon_name) {
+      ifelse(icon_name %in% names(icons_vec), icons_vec[icon_name], icon_name)
+    }
   )
 
-  return(setNames(icon_names, icons_vec[icon_names]))
+  return(setNames(icon_names, out))
 }
 
 
