@@ -25,7 +25,8 @@ use_pretty_style <- function() {
 #'
 #' @export
 display_inline <- function(obj) {
-  obj %>% htmltools::tagAppendAttributes(style = "display: inline-block;")
+  obj %>%
+    htmltools::tagAppendAttributes(style = css_styler(display = "inline-block"))
 }
 
 
@@ -35,7 +36,8 @@ display_inline <- function(obj) {
 #'
 #' @export
 remove_margins <- function(obj) {
-  obj %>% htmltools::tagAppendAttributes(style = "margin: 0px;")
+  obj %>%
+    htmltools::tagAppendAttributes(style = css_styler(margin = "0px"))
 }
 
 
@@ -50,14 +52,15 @@ remove_margins <- function(obj) {
 #' @export
 set_margins <- function(obj,
                         top = NULL, bottom = NULL, left = NULL, right = NULL) {
-  style <- css_styler(
-    `margin-top` = top,
-    `margin-bottom` = bottom,
-    `margin-left` = left,
-    `margin-right` = right
-  )
   obj %>%
-    htmltools::tagAppendAttributes(style = style)
+    htmltools::tagAppendAttributes(
+      style = css_styler(
+        `margin-top` = top,
+        `margin-bottom` = bottom,
+        `margin-left` = left,
+        `margin-right` = right
+      )
+    )
 }
 
 
@@ -90,11 +93,10 @@ hr_short <- function(margin_left = "105px", margin_right = margin_left,
                      color = "lightblue") {
   htmltools::hr() %>%
     htmltools::tagAppendAttributes(
-      style = paste(
-        sprintf("margin-left: %s", margin_left),
-        sprintf("margin-right: %s", margin_right),
-        sprintf("border-color: %s", color), "",
-        sep = "; "
+      style = css_styler(
+        `margin-left` = margin_left,
+        `margin-right` = margin_right,
+        `border-color` = color
       )
     )
 }

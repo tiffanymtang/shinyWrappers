@@ -41,7 +41,8 @@ tableUI <- function(id, border = FALSE, spinner = FALSE) {
 #' @export
 tableServer <- function(id, table_fun, table_options = TRUE,
                         mode = c("DT", "kable"), caption = NULL,
-                        spinner = TRUE, ...) {
+                        border = FALSE, spinner = TRUE,
+                        error_msg = "", ...) {
   mode <- match.arg(mode)
 
   shiny::moduleServer(id, function(input, output, session) {
@@ -84,6 +85,7 @@ tableServer <- function(id, table_fun, table_options = TRUE,
     } else if (mode == "kable") {
       output$kable <- shiny::renderText({make_table()})
     }
+    output$table_error <- shiny::renderText({error_msg})
 
     output$table <- shiny::renderUI({
       if (spinner) {
@@ -92,15 +94,27 @@ tableServer <- function(id, table_fun, table_options = TRUE,
         spinner_fun <- function(x) x
       }
 
+      if (border) {
+        border_fun <- add_border
+      } else {
+        border_fun <- function(x) x
+      }
+
       if (mode == "DT") {
         shiny::fluidPage(
-          DT::DTOutput(session$ns("dt")) %>% spinner_fun(),
+          DT::DTOutput(session$ns("dt")) %>%
+            spinner_fun() %>%
+            border_fun(),
           vspace()
         )
       } else if (mode == "kable") {
         shiny::fluidPage(
-          shiny::htmlOutput(session$ns("kable")) %>% TRUE()
+          shiny::htmlOutput(session$ns("kable")) %>%
+            spinner_fun() %>%
+            border_fun()
         )
+      } else {
+        shiny::htmlOutput(session$ns("table_error"))
       }
     })
   })

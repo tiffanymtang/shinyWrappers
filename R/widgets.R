@@ -233,7 +233,7 @@ action_button <- function(inputId, label, br = TRUE,
     inputId = inputId, label = label, style = style, ...
   ) %>%
     htmltools::tagAppendAttributes(
-      style = sprintf("background-color: %s;", color)
+      style = css_styler(`background-color` = color)
     ) %>%
     display_inline()
 

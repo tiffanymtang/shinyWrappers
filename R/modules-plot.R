@@ -13,6 +13,8 @@
 #'   `plotOptionsUI(id)` is called in the UI.
 #' @param modes Character vector. Plot modes to display. Options are
 #'   \code{"ggplot"} and \code{"plotly"}.
+#' @param error_msg Error message to display if specified mode is not
+#'   supported.
 #'
 #' @keywords internal
 NULL
@@ -38,7 +40,8 @@ plotUI <- function(id, border = FALSE, spinner = FALSE) {
 #' @export
 plotServer <- function(id, plot_fun, plot_options = TRUE,
                        modes = c("ggplot", "plotly"),
-                       border = FALSE, spinner = TRUE) {
+                       border = FALSE, spinner = TRUE,
+                       error_msg = "") {
   shiny::moduleServer(id, function(input, output, session) {
 
     make_plot <- shiny::reactive({
@@ -146,6 +149,7 @@ plotServer <- function(id, plot_fun, plot_options = TRUE,
         make_plot()
       }, height = function() height = plot_height())
     }
+    output$plot_error <- shiny::renderText({error_msg})
 
     output$plot <- shiny::renderUI({
       if (!is.null(input$display_viz)) {
@@ -157,6 +161,8 @@ plotServer <- function(id, plot_fun, plot_options = TRUE,
         out <- shiny::plotOutput(session$ns("ggplot"), height = "auto")
       } else if (mode == "plotly") {
         out <- plotly::plotlyOutput(session$ns("plotly"), height = "100%")
+      } else {
+        out <- shiny::htmlOutput(session$ns("plot_error"))
       }
       if (border) {
         out <- out %>% add_border()
