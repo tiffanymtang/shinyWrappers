@@ -4,14 +4,16 @@
 \alias{get_icon}
 \title{Get html snippet for built-in icons.}
 \usage{
-get_icon(icon_name, width = 20, height = 20)
+get_icon(src, width = 20, height = 20, ...)
 }
 \arguments{
-\item{icon_name}{Name of built-in icon.}
+\item{src}{Name of built-in icon.}
 
 \item{width}{Width of icon in pixels.}
 
 \item{height}{Height of icon in pixels.}
+
+\item{...}{Additional arguments to pass to \code{htmltools::img()}.}
 }
 \value{
 Character vector of icon path.

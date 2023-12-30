@@ -2,6 +2,12 @@
 #'
 #' @export
 use_pretty_style <- function() {
+
+  shiny::addResourcePath(
+    prefix = "www",
+    directoryPath = system.file("www", package = packageName())
+  )
+
   shiny::tagList(
     htmltools::includeCSS(
       system.file(file.path("www", "pretty_style.css"), package = packageName())
@@ -44,21 +50,14 @@ remove_margins <- function(obj) {
 #' @export
 set_margins <- function(obj,
                         top = NULL, bottom = NULL, left = NULL, right = NULL) {
-  style <- NULL
-  if (!is.null(top)) {
-    style <- c(style, sprintf("margin-top: %s", top))
-  }
-  if (!is.null(bottom)) {
-    style <- c(style, sprintf("margin-bottom: %s", bottom))
-  }
-  if (!is.null(left)) {
-    style <- c(style, sprintf("margin-left: %s", left))
-  }
-  if (!is.null(right)) {
-    style <- c(style, sprintf("margin-right: %s", right))
-  }
+  style <- css_styler(
+    `margin-top` = top,
+    `margin-bottom` = bottom,
+    `margin-left` = left,
+    `margin-right` = right
+  )
   obj %>%
-    htmltools::tagAppendAttributes(style = paste(style, collapse = "; "))
+    htmltools::tagAppendAttributes(style = style)
 }
 
 
@@ -109,7 +108,7 @@ hr_short <- function(margin_left = "105px", margin_right = margin_left,
 vspace <- function(size = "3px") {
   htmltools::tags$div(htmltools::tags$p("&nbsp;")) %>%
     htmltools::tagAppendAttributes(
-      style = sprintf("font-size: %s; color: transparent;", size)
+      style = css_styler(`font-size` = size, color = "transparent")
     )
 }
 

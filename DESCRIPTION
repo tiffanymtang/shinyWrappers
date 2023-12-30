@@ -18,6 +18,8 @@ Imports:
     htmltools,
     magrittr,
     plotly,
+    purrr,
+    rlang,
     shiny,
     shinycssloaders,
     shinydashboardPlus,

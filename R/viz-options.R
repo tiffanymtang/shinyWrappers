@@ -307,6 +307,7 @@ plotGeomOptionsUI <- function(id,
 #' @param float_right Logical. Whether or not to float the buttons to the right.
 #' @param ... Additional arguments to pass to radio_group_buttons
 #'
+#' @export
 selectVizUI <- function(id,
                         choices = c("ggplot", "plotly", "table"),
                         selected = NULL, individual = FALSE, size = "normal",
@@ -315,20 +316,20 @@ selectVizUI <- function(id,
   choices <- match.arg(choices, several.ok = TRUE)
 
   if (float_right) {
-    style <- "float: right; margin-right: 15px;"
+    style <- css_styler(
+      float = "right",
+      `z-index` = 99,
+      position = "relative",
+      `margin-right` = "15px"
+    )
   } else {
     style <- ""
   }
 
-  # TODO: icons do not work correctly
   radio_group_buttons(
     inputId = ns("display_viz"),
     label = NULL,
-    # choices = get_icons(choices),
-    choices = choices,
-    # choices = NULL,
-    # choiceNames = get_icons(choices),
-    # choiceValues = choices,
+    choices = get_icons(choices),
     selected = selected,
     individual = individual,
     size = size,

@@ -4,7 +4,7 @@
 \alias{get_icons}
 \title{Return custom icons}
 \usage{
-get_icons(icon_names, width = 20, height = 20)
+get_icons(icon_names, width = 20, height = 20, ...)
 }
 \arguments{
 \item{icon_names}{Name(s) of built-in icons to return.}
@@ -12,6 +12,8 @@ get_icons(icon_names, width = 20, height = 20)
 \item{width}{Width of icon in pixels.}
 
 \item{height}{Height of icon in pixels.}
+
+\item{...}{Additional arguments to pass to \code{htmltools::img()}.}
 }
 \value{
 Named character vector of html snippets to display icons
