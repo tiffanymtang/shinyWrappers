@@ -4,7 +4,17 @@
 #' @description Shiny module (UI and server-side functions) to display table
 #'   (kable or DT) in a uniform container.
 #'
+#' @inheritParams plotModule
 #' @param id Unique identifier.
+#' @param table_fun (Reactive) function to generate table.
+#' @param table_options Logical. Whether to update table using default table
+#'   options set using `tableOptionsUI(id)`. Only set to \code{TRUE} if
+#'   `tableOptionsUI(id)` is called in the UI.
+#' @param modes Character string Table mode to display. Options are
+#'   \code{"DT"} and \code{"kable"}.
+#' @param caption Table caption.
+#' @param ... Arguments to pass to `vthemes::pretty_DT()` or
+#'   `vthemes::pretty_kable()`
 #'
 #' @keywords internal
 NULL
@@ -85,7 +95,7 @@ tableServer <- function(id, table_fun, table_options = TRUE,
       if (mode == "DT") {
         shiny::fluidPage(
           DT::DTOutput(session$ns("dt")) %>% spinner_fun(),
-          small_vspace()
+          vspace()
         )
       } else if (mode == "kable") {
         shiny::fluidPage(

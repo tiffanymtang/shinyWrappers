@@ -20,6 +20,7 @@ fileInputUI <- function(id,
                         show_accept = TRUE,
                         tooltip = NULL) {
   ns <- shiny::NS(id)
+  indent_size <- "1.25em"
 
   if (show_accept) {
     label <- sprintf("%s (%s)", label, paste(accept, collapse = ", "))
@@ -45,22 +46,22 @@ fileInputUI <- function(id,
         label = "Separator",
         choices = c("Comma" = ",", "Semicolon" = ";", "Tab" = "\t"),
         inline = TRUE
-      ),
-      htmltools::br()
-    ),
+      )
+    ) %>%
+      set_margins(left = indent_size),
     # options for .csv file
     shiny::conditionalPanel(
       condition = sprintf(
         "output['%1$s'] == '.csv' | output['%1$s'] == '.txt'", ns("filetype")
       ),
-      shinyWidgets::materialSwitch(
+      material_switch(
         inputId = ns("header"),
         label = "Header",
         value = TRUE,
         status = "primary"
-      ),
-      htmltools::br()
-    )
+      )
+    ) %>%
+      set_margins(left = indent_size)
   )
 }
 

@@ -20,6 +20,24 @@ tableServer(
 }
 \arguments{
 \item{id}{Unique identifier.}
+
+\item{border}{Add border to plot.}
+
+\item{spinner}{Add spinner to plot.}
+
+\item{table_fun}{(Reactive) function to generate table.}
+
+\item{table_options}{Logical. Whether to update table using default table
+options set using \code{tableOptionsUI(id)}. Only set to \code{TRUE} if
+\code{tableOptionsUI(id)} is called in the UI.}
+
+\item{caption}{Table caption.}
+
+\item{...}{Arguments to pass to \code{vthemes::pretty_DT()} or
+\code{vthemes::pretty_kable()}}
+
+\item{modes}{Character string Table mode to display. Options are
+\code{"DT"} and \code{"kable"}.}
 }
 \description{
 Shiny module (UI and server-side functions) to display table

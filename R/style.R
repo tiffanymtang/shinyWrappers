@@ -33,6 +33,35 @@ remove_margins <- function(obj) {
 }
 
 
+#' Set margins
+#'
+#' @param obj Object to set margins.
+#' @param top Top margin.
+#' @param bottom Bottom margin.
+#' @param left Left margin.
+#' @param right Right margin.
+#'
+#' @export
+set_margins <- function(obj,
+                        top = NULL, bottom = NULL, left = NULL, right = NULL) {
+  style <- NULL
+  if (!is.null(top)) {
+    style <- c(style, sprintf("margin-top: %s", top))
+  }
+  if (!is.null(bottom)) {
+    style <- c(style, sprintf("margin-bottom: %s", bottom))
+  }
+  if (!is.null(left)) {
+    style <- c(style, sprintf("margin-left: %s", left))
+  }
+  if (!is.null(right)) {
+    style <- c(style, sprintf("margin-right: %s", right))
+  }
+  obj %>%
+    htmltools::tagAppendAttributes(style = paste(style, collapse = "; "))
+}
+
+
 #' Add spinner when loading
 #'
 #' @description Wrapper around `shinycssloaders::withSpinner()` with a different
@@ -72,12 +101,12 @@ hr_short <- function(margin_left = "105px", margin_right = margin_left,
 }
 
 
-#' Add small amount of vertical space
+#' Add vertical space
 #'
 #' @param size Size of vertical space.
 #'
 #' @export
-small_vspace <- function(size = "3px") {
+vspace <- function(size = "3px") {
   htmltools::tags$div(htmltools::tags$p("&nbsp;")) %>%
     htmltools::tagAppendAttributes(
       style = sprintf("font-size: %s; color: transparent;", size)

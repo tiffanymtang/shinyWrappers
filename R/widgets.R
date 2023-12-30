@@ -21,7 +21,8 @@ radio_buttons <- function(inputId, label, choices, selected = NULL,
     icon = icon,
     bigger = bigger,
     ...
-  )
+  ) %>%
+    set_margins(bottom = "0px")
 }
 
 
