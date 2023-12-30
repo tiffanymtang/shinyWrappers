@@ -4,10 +4,12 @@
 \alias{add_spinner}
 \title{Add spinner when loading}
 \usage{
-add_spinner(obj, color = "#18bc9c")
+add_spinner(obj, spinner = TRUE, color = "#18bc9c")
 }
 \arguments{
 \item{obj}{Object to add spinner to.}
+
+\item{spinner}{Logical. Whether or not to add spinner.}
 
 \item{color}{The color of the spinner in hex format. Ignored if \code{image} is used.}
 }

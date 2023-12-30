@@ -25,26 +25,7 @@ default valueBox width of 4 occupies 1/3 of that width. For column-based
 layouts, use \code{NULL} for the width; the width is set by the column that
 contains the box.}
 
-\item{color}{background color: see here for a list of valid colors \url{https://adminlte.io/themes/AdminLTE/pages/UI/general.html}.
-See below:
-\itemize{
- \item \code{light-blue (primary status)}: \ifelse{html}{\out{<span style='width:12px;height:12px;background:#3c8dbc;border-radius:2px;display:inline-block;margin-right:5px;'></span>#3c8dbc}}{#3c8dbc}.
- \item \code{red (danger status)}: \ifelse{html}{\out{<span style='width:12px;height:12px;background:#dd4b39;border-radius:2px;display:inline-block;margin-right:5px;'></span>#dd4b39}}{#dd4b39}.
- \item \code{green (success status)}: \ifelse{html}{\out{<span style='width:12px;height:12px;background:#00a65a;border-radius:2px;display:inline-block;margin-right:5px;'></span>#00a65a}}{#00a65a}.
- \item \code{aqua (info status)}: \ifelse{html}{\out{<span style='width:12px;height:12px;background:#00c0ef;border-radius:2px;display:inline-block;margin-right:5px;'></span>#00c0ef}}{#00c0ef}.
- \item \code{yellow (warning status)}: \ifelse{html}{\out{<span style='width:12px;height:12px;background:#f39c12;border-radius:2px;display:inline-block;margin-right:5px;'></span>#f39c12}}{#f39c12}.
- \item \code{blue}: \ifelse{html}{\out{<span style='width:12px;height:12px;background:#0073b7;border-radius:2px;display:inline-block;margin-right:5px;'></span>#0073b7}}{#0073b7}.
- \item \code{navy}: \ifelse{html}{\out{<span style='width:12px;height:12px;background:#001F3F;border-radius:2px;display:inline-block;margin-right:5px;'></span>#001F3F}}{#001F3F}.
- \item \code{teal}: \ifelse{html}{\out{<span style='width:12px;height:12px;background:#39CCCC;border-radius:2px;display:inline-block;margin-right:5px;'></span>#39CCCC}}{#39CCCC}.
- \item \code{olive}: \ifelse{html}{\out{<span style='width:12px;height:12px;background:#3D9970;border-radius:2px;display:inline-block;margin-right:5px;'></span>#3D9970}}{#3D9970}.
- \item \code{lime}: \ifelse{html}{\out{<span style='width:12px;height:12px;background:#01FF70;border-radius:2px;display:inline-block;margin-right:5px;'></span>#01FF70}}{#01FF70}.
- \item \code{orange}: \ifelse{html}{\out{<span style='width:12px;height:12px;background:#FF851B;border-radius:2px;display:inline-block;margin-right:5px;'></span>#FF851B}}{#FF851B}.
- \item \code{fuchsia}: \ifelse{html}{\out{<span style='width:12px;height:12px;background:#F012BE;border-radius:2px;display:inline-block;margin-right:5px;'></span>#F012BE}}{#F012BE}.
- \item \code{purple}: \ifelse{html}{\out{<span style='width:12px;height:12px;background:#605ca8;border-radius:2px;display:inline-block;margin-right:5px;'></span>#605ca8}}{#605ca8}.
- \item \code{maroon}: \ifelse{html}{\out{<span style='width:12px;height:12px;background:#D81B60;border-radius:2px;display:inline-block;margin-right:5px;'></span>#D81B60}}{#D81B60}.
- \item \code{black}: \ifelse{html}{\out{<span style='width:12px;height:12px;background:#111;border-radius:2px;display:inline-block;margin-right:5px;'></span>#111}}{#111}.
- \item \code{gray}: \ifelse{html}{\out{<span style='width:12px;height:12px;background:#d2d6de;border-radius:2px;display:inline-block;margin-right:5px;'></span>#d2d6de}}{#d2d6de}.
-}}
+\item{color}{Box outline color.}
 
 \item{status}{The status of the item This determines the item's background
   color.  Valid statuses are defined as follows:

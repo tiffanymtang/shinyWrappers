@@ -14,7 +14,9 @@ tableServer(
   table_options = TRUE,
   mode = c("DT", "kable"),
   caption = NULL,
+  border = FALSE,
   spinner = TRUE,
+  error_msg = "",
   ...
 )
 }
@@ -32,6 +34,9 @@ options set using \code{tableOptionsUI(id)}. Only set to \code{TRUE} if
 \code{tableOptionsUI(id)} is called in the UI.}
 
 \item{caption}{Table caption.}
+
+\item{error_msg}{Error message to display if specified mode is not
+supported.}
 
 \item{...}{Arguments to pass to \code{vthemes::pretty_DT()} or
 \code{vthemes::pretty_kable()}}

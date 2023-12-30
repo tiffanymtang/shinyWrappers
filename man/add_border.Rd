@@ -4,10 +4,12 @@
 \alias{add_border}
 \title{Add border class}
 \usage{
-add_border(obj)
+add_border(obj, border = TRUE)
 }
 \arguments{
 \item{obj}{Object to add border to.}
+
+\item{border}{Logical. Whether or not to add border.}
 }
 \description{
 Add border class

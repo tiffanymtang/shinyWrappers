@@ -14,7 +14,8 @@ plotServer(
   plot_options = TRUE,
   modes = c("ggplot", "plotly"),
   border = FALSE,
-  spinner = TRUE
+  spinner = TRUE,
+  error_msg = ""
 )
 }
 \arguments{
@@ -32,6 +33,9 @@ options set using \code{plotOptionsUI(id)}. Only set to \code{TRUE} if
 
 \item{modes}{Character vector. Plot modes to display. Options are
 \code{"ggplot"} and \code{"plotly"}.}
+
+\item{error_msg}{Error message to display if specified mode is not
+supported.}
 }
 \description{
 Shiny module (UI and server-side functions) to display plot (

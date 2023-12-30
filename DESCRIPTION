@@ -15,6 +15,7 @@ Config/testthat/edition: 3
 Imports: 
     DT,
     fresh,
+    ggplot2,
     htmltools,
     magrittr,
     plotly,
