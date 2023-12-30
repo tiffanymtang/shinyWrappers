@@ -157,9 +157,9 @@ plotServer <- function(id, plot_fun, plot_options = TRUE,
       } else {
         mode <- modes[1]
       }
-      if (mode == "ggplot") {
+      if ((mode == "ggplot") && (mode %in% modes)) {
         out <- shiny::plotOutput(session$ns("ggplot"), height = "auto")
-      } else if (mode == "plotly") {
+      } else if ((mode == "plotly") && (mode %in% modes)) {
         out <- plotly::plotlyOutput(session$ns("plotly"), height = "100%")
       } else {
         out <- shiny::htmlOutput(session$ns("plot_error"))
