@@ -23,11 +23,11 @@ prettyBox <- function(..., title = NULL, width = 12, color = NULL,
   if (!is.null(color)) {
     color_fun <- function(x) {
       x %>%
-        tagAppendAttributes(
+        htmltools::tagAppendAttributes(
           style = css_styler(border = sprintf("1px solid %s", color)),
           .cssSelector = ".box"
         ) %>%
-        tagAppendAttributes(
+        htmltools::tagAppendAttributes(
           style = css_styler(background = color),
           .cssSelector = ".box-header"
         )
