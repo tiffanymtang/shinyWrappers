@@ -58,6 +58,7 @@ tableOptionsUI <- function(id,
 #' @param x_text_angle Default angle of x-axis text. If \code{FALSE}, x-axis
 #'   text is horizontal. Otherwise, it is angled 45 degrees.
 #' @param strip_text_color Default color of strip text.
+#' @param bg_color Default background color.
 #' @param other_options Additional shiny widgets/tags to add to plot options.
 #'
 #' @return List of shiny tags.
@@ -71,7 +72,7 @@ plotOptionsUI <- function(id, multicol = FALSE,
                           x_axis_title_size = 14, y_axis_title_size = 14,
                           legend_title_size = 14, title_size = 16,
                           axis_line_width = 1, x_text_angle = FALSE,
-                          strip_text_color = "white",
+                          strip_text_color = "white", bg_color = "grey98",
                           other_options = NULL) {
   ns <- shiny::NS(id)
 
@@ -81,7 +82,7 @@ plotOptionsUI <- function(id, multicol = FALSE,
         ns("display_grid"), "Show grid lines", value = TRUE
       ),
       shiny::textInput(
-        ns("display_bg"), "Background Color", "grey98"
+        ns("display_bg"), "Background Color", bg_color
       )
     )
   } else {

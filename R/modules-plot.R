@@ -60,69 +60,76 @@ plotServer <- function(id, plot_fun, plot_options = TRUE,
         x_hjust <- 0.5
       }
 
-      plot <- plot +
-        ggplot2::theme(
-          axis.title.x = ggplot2::element_text(
-            size = input$display_xtitle_size, face = "bold"
-          ),
-          axis.title.y = ggplot2::element_text(
-            size = input$display_ytitle_size, face = "bold"
-          ),
-          legend.title = ggplot2::element_text(
-            size = input$display_ltitle_size, face = "bold"
-          ),
-          plot.title = ggplot2::element_text(
-            size = input$display_title_size, face = "bold"
-          ),
-          axis.text.x = ggplot2::element_text(
-            size = input$display_xtext_size, angle = x_angle, hjust = x_hjust
-          ),
-          axis.text.y = ggplot2::element_text(size = input$display_ytext_size),
-          legend.text = ggplot2::element_text(size = input$display_ltext_size),
-          axis.line = ggplot2::element_line(
-            linewidth = input$display_awidth, color = "black"
-          )
+      theme_obj <- ggplot2::theme(
+        axis.title.x = ggplot2::element_text(
+          size = input$display_xtitle_size, face = "bold"
+        ),
+        axis.title.y = ggplot2::element_text(
+          size = input$display_ytitle_size, face = "bold"
+        ),
+        legend.title = ggplot2::element_text(
+          size = input$display_ltitle_size, face = "bold"
+        ),
+        plot.title = ggplot2::element_text(
+          size = input$display_title_size, face = "bold"
+        ),
+        axis.text.x = ggplot2::element_text(
+          size = input$display_xtext_size, angle = x_angle, hjust = x_hjust
+        ),
+        axis.text.y = ggplot2::element_text(size = input$display_ytext_size),
+        legend.text = ggplot2::element_text(size = input$display_ltext_size),
+        axis.line = ggplot2::element_line(
+          linewidth = input$display_awidth, color = "black"
         )
+      )
+
       if (!is.null(input$display_bg)) {
-        plot <- plot +
+        theme_obj <- theme_obj +
           ggplot2::theme(
             panel.background = ggplot2::element_rect(fill = input$display_bg),
             legend.key = ggplot2::element_rect(fill = input$display_bg)
           )
         if (!input$display_grid) {
-          plot <- plot +
+          theme_obj <- theme_obj +
             ggplot2::theme(panel.grid = ggplot2::element_blank())
         }
       }
       if (!is.null(input$display_sbg)) {
-        plot <- plot + ggplot2::theme(
-          strip.background = ggplot2::element_rect(
-            fill = input$display_sbg, color = input$display_sbg
-          ),
-          strip.text = ggplot2::element_text(
-            size = input$display_stext_size,
-            color = input$display_stext_color,
-            face = "bold"
+        theme_obj <- theme_obj +
+          ggplot2::theme(
+            strip.background = ggplot2::element_rect(
+              fill = input$display_sbg, color = input$display_sbg
+            ),
+            strip.text = ggplot2::element_text(
+              size = input$display_stext_size,
+              color = input$display_stext_color,
+              face = "bold"
+            )
           )
-        )
       }
 
       if (!("x" %in% input$display_atext)) {
-        plot <- plot +
+        theme_obj <- theme_obj +
           ggplot2::theme(
             axis.text.x = ggplot2::element_blank(),
             axis.ticks.x = ggplot2::element_blank()
           )
       }
       if (!("y" %in% input$display_atext)) {
-        plot <- plot +
+        theme_obj <- theme_obj +
           ggplot2::theme(
             axis.text.y = ggplot2::element_blank(),
             axis.ticks.y = ggplot2::element_blank()
           )
       }
       if (input$display_coord_flip) {
-        plot <- plot + ggplot2::coord_flip()
+        theme_obj <- theme_obj + ggplot2::coord_flip()
+      }
+
+      if ("patchwork" %in% class(plot)) {
+        plot <- plot & theme_obj
+      } else {
+        plot <- plot + theme_obj
       }
 
       return(plot)
