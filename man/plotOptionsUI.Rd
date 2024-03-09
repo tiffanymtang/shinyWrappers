@@ -21,7 +21,8 @@ plotOptionsUI(
   title_size = 16,
   axis_line_width = 1,
   x_text_angle = FALSE,
-  strip_text_color = "white"
+  strip_text_color = "white",
+  other_options = NULL
 )
 }
 \arguments{
@@ -59,6 +60,8 @@ plotOptionsUI(
 text is horizontal. Otherwise, it is angled 45 degrees.}
 
 \item{strip_text_color}{Default color of strip text.}
+
+\item{other_options}{Additional shiny widgets/tags to add to plot options.}
 }
 \value{
 List of shiny tags.

@@ -2,27 +2,39 @@
 #'
 #' @param id Unique identifier.
 #' @param digits Default number of digits to display.
+#' @param digits_label Displayed label for digits input.
 #' @param sigfig Logical. If \code{TRUE}, use significant digits.
+#' @param sigfig_label Displayed label for significant digits checkbox.
+#' @param total_width Total width of html element.
 #'
 #' @return List of shiny tags.
 #'
 #' @export
-tableOptionsUI <- function(id, digits = NA, sigfig = FALSE) {
+tableOptionsUI <- function(id,
+                           digits = NA,
+                           digits_label = "Digits",
+                           sigfig = FALSE,
+                           sigfig_label = "Use Significant Digits",
+                           total_width = NULL) {
   ns <- shiny::NS(id)
 
-  shiny::tagList(
+  opts <- shiny::tagList(
     shiny::numericInput(
       inputId = ns("display_digits"),
-      label = "Digits",
+      label = digits_label,
       value = digits,
       min = 0, max = NA, step = 1
     ),
     checkbox(
       inputId = ns("display_sigfigs"),
-      label = "Use Significant Digits",
+      label = sigfig_label,
       value = sigfig
     )
   )
+
+  if (!is.null(total_width)) {
+    opts <- shiny::tagList(shiny::column(total_width, opts))
+  }
 }
 
 
@@ -46,6 +58,7 @@ tableOptionsUI <- function(id, digits = NA, sigfig = FALSE) {
 #' @param x_text_angle Default angle of x-axis text. If \code{FALSE}, x-axis
 #'   text is horizontal. Otherwise, it is angled 45 degrees.
 #' @param strip_text_color Default color of strip text.
+#' @param other_options Additional shiny widgets/tags to add to plot options.
 #'
 #' @return List of shiny tags.
 #'
@@ -58,7 +71,8 @@ plotOptionsUI <- function(id, multicol = FALSE,
                           x_axis_title_size = 14, y_axis_title_size = 14,
                           legend_title_size = 14, title_size = 16,
                           axis_line_width = 1, x_text_angle = FALSE,
-                          strip_text_color = "white") {
+                          strip_text_color = "white",
+                          other_options = NULL) {
   ns <- shiny::NS(id)
 
   if (!heatmap) {
@@ -152,7 +166,8 @@ plotOptionsUI <- function(id, multicol = FALSE,
       axis_width_options,
       axis_options,
       bg_options,
-      height_options
+      height_options,
+      other_options
     )
   } else {
     opts_col1 <- title_options
@@ -165,7 +180,8 @@ plotOptionsUI <- function(id, multicol = FALSE,
       axis_options,
       bg_options,
       strip_format_options,
-      height_options
+      height_options,
+      other_options
     )
     opts <- shiny::tagList(
       shiny::column(total_width / 3, opts_col1),

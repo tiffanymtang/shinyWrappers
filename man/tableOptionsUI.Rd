@@ -4,14 +4,27 @@
 \alias{tableOptionsUI}
 \title{Basic Table Options}
 \usage{
-tableOptionsUI(id, digits = NA, sigfig = FALSE)
+tableOptionsUI(
+  id,
+  digits = NA,
+  digits_label = "Digits",
+  sigfig = FALSE,
+  sigfig_label = "Use Significant Digits",
+  total_width = NULL
+)
 }
 \arguments{
 \item{id}{Unique identifier.}
 
 \item{digits}{Default number of digits to display.}
 
+\item{digits_label}{Displayed label for digits input.}
+
 \item{sigfig}{Logical. If \code{TRUE}, use significant digits.}
+
+\item{sigfig_label}{Displayed label for significant digits checkbox.}
+
+\item{total_width}{Total width of html element.}
 }
 \value{
 List of shiny tags.

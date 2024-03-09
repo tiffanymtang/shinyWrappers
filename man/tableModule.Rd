@@ -41,7 +41,7 @@ supported.}
 \item{...}{Arguments to pass to \code{vthemes::pretty_DT()} or
 \code{vthemes::pretty_kable()}}
 
-\item{modes}{Character string Table mode to display. Options are
+\item{modes}{Character string. Table mode to display. Options are
 \code{"DT"} and \code{"kable"}.}
 }
 \description{

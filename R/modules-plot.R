@@ -12,7 +12,9 @@
 #'   options set using `plotOptionsUI(id)`. Only set to \code{TRUE} if
 #'   `plotOptionsUI(id)` is called in the UI.
 #' @param modes Character vector. Plot modes to display. Options are
-#'   \code{"ggplot"} and \code{"plotly"}.
+#'   \code{"ggplot"}, \code{"plotly"}, and \code{"table"}, but note that if
+#'   \code{"table"} is used, then \code{tableServer()} must have been also
+#'   called in the server with the same \code{id}.
 #' @param error_msg Error message to display if specified mode is not
 #'   supported.
 #'
@@ -157,6 +159,8 @@ plotServer <- function(id, plot_fun, plot_options = TRUE,
         out <- shiny::plotOutput(session$ns("ggplot"), height = "auto")
       } else if ((mode == "plotly") && (mode %in% modes)) {
         out <- plotly::plotlyOutput(session$ns("plotly"), height = "100%")
+      } else if ((mode == "table") && (mode %in% modes)) {
+        out <- shiny::uiOutput(session$ns("table"))
       } else {
         out <- shiny::htmlOutput(session$ns("plot_error"))
       }

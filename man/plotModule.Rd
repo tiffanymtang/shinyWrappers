@@ -32,7 +32,9 @@ options set using \code{plotOptionsUI(id)}. Only set to \code{TRUE} if
 \code{plotOptionsUI(id)} is called in the UI.}
 
 \item{modes}{Character vector. Plot modes to display. Options are
-\code{"ggplot"} and \code{"plotly"}.}
+\code{"ggplot"}, \code{"plotly"}, and \code{"table"}, but note that if
+\code{"table"} is used, then \code{tableServer()} must have been also
+called in the server with the same \code{id}.}
 
 \item{error_msg}{Error message to display if specified mode is not
 supported.}

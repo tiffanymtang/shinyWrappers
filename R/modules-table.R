@@ -10,7 +10,7 @@
 #' @param table_options Logical. Whether to update table using default table
 #'   options set using `tableOptionsUI(id)`. Only set to \code{TRUE} if
 #'   `tableOptionsUI(id)` is called in the UI.
-#' @param modes Character string Table mode to display. Options are
+#' @param modes Character string. Table mode to display. Options are
 #'   \code{"DT"} and \code{"kable"}.
 #' @param caption Table caption.
 #' @param ... Arguments to pass to `vthemes::pretty_DT()` or
