@@ -60,7 +60,7 @@ tableServer <- function(id, table_fun, table_options = TRUE,
         if (isTRUE(is.na(digits))) {
           digits <- NULL
         }
-        sigfig <- input$display_sigfig
+        sigfig <- input$display_sigfigs
         if (is.null(sigfig)) {
           sigfig <- FALSE
         }

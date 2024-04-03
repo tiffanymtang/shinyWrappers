@@ -35,6 +35,8 @@ tableOptionsUI <- function(id,
   if (!is.null(total_width)) {
     opts <- shiny::tagList(shiny::column(total_width, opts))
   }
+  
+  return(opts)
 }
 
 
