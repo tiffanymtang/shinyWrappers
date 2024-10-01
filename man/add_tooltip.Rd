@@ -4,7 +4,14 @@
 \alias{add_tooltip}
 \title{Add a tooltip to an element}
 \usage{
-add_tooltip(id, tooltip, placement = "right", use_id_only = FALSE, ...)
+add_tooltip(
+  id,
+  tooltip,
+  placement = "right",
+  allowHTML = TRUE,
+  use_id_only = FALSE,
+  ...
+)
 }
 \arguments{
 \item{id}{The id of the element to add the tooltip to.}
@@ -12,6 +19,8 @@ add_tooltip(id, tooltip, placement = "right", use_id_only = FALSE, ...)
 \item{tooltip}{The tooltip to add.}
 
 \item{placement}{The placement of the tooltip.}
+
+\item{allowHTML}{Whether to allow HTML in the tooltip.}
 
 \item{use_id_only}{Whether to use the id only. Default is \code{FALSE} which
 will add the namespace 'tooltip-icon' to the id. Set to \code{TRUE} if the

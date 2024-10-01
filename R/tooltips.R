@@ -21,6 +21,7 @@ add_tooltip_icon <- function(..., id, icon = shiny::icon("info-circle")) {
 #' @param id The id of the element to add the tooltip to.
 #' @param tooltip The tooltip to add.
 #' @param placement The placement of the tooltip.
+#' @param allowHTML Whether to allow HTML in the tooltip.
 #' @param use_id_only Whether to use the id only. Default is \code{FALSE} which
 #'   will add the namespace 'tooltip-icon' to the id. Set to \code{TRUE} if the
 #'   tooltip icon was not added with \code{\link{add_tooltip_icon}} (e.g., if
@@ -30,11 +31,13 @@ add_tooltip_icon <- function(..., id, icon = shiny::icon("info-circle")) {
 #' @return The element with the tooltip.
 #'
 #' @export
-add_tooltip <- function(id, tooltip, placement = "right", use_id_only = FALSE,
-                        ...) {
+add_tooltip <- function(id, tooltip, placement = "right", allowHTML = TRUE,
+                        use_id_only = FALSE, ...) {
   if (!use_id_only) {
     ns <- shiny::NS(id)
     id <- ns("tooltip")
   }
-  tippy::tippy_this(id, tooltip, placement = placement, ...)
+  tippy::tippy_this(
+    id, tooltip, placement = placement, allowHTML = allowHTML, ...
+  )
 }

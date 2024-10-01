@@ -4,12 +4,15 @@
 \alias{reset_inputs}
 \title{Reset all inputs}
 \usage{
-reset_inputs(input, session)
+reset_inputs(input, session, reset_input_ids = NULL)
 }
 \arguments{
 \item{input}{Shiny input.}
 
 \item{session}{Shiny session.}
+
+\item{reset_input_ids}{A character vector of input IDs to reset. If NULL,
+all inputs will be reset.}
 }
 \description{
 Reset all inputs to their default values. Note that
