@@ -5,9 +5,11 @@
 #'
 #' @param input Shiny input.
 #' @param session Shiny session.
+#' @param reset_input_ids A character vector of input IDs to reset. If NULL,
+#'   all inputs will be reset.
 #'
 #' @export
-reset_inputs <- function(input, session) {
+reset_inputs <- function(input, session, reset_input_ids = NULL) {
   shiny::observeEvent(input$reset_input, {
     shinyWidgets::confirmSweetAlert(
       session, inputId = "confirm_reset",
@@ -20,7 +22,13 @@ reset_inputs <- function(input, session) {
   })
   shiny::observeEvent(input$confirm_reset, {
     if (isTRUE(input$confirm_reset)) {
-      shinyjs::refresh()
+      if (is.null(reset_input_ids)) {
+        shinyjs::refresh()
+      } else {
+        for (input_id in reset_input_ids) {
+          shinyjs::reset(input_id)
+        }
+      }
     }
   }, ignoreNULL = TRUE)
 }
