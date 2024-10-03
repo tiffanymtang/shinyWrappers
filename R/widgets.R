@@ -277,3 +277,33 @@ continue_button <- function(inputId = "continue", label = "Next stage", ...) {
   )
 }
 
+
+#' Download button
+#'
+#' @description Wrapper around `downloadBttn()` with different default settings
+#'
+#' @inheritParams shinyWidgets::downloadBttn
+#' @param inputId Input ID.
+#' @param css_style CSS style for the button.
+#' @param ... Additional arguments to pass to `shinyWidgets::downloadBttn()`.
+#'
+#' @export
+download_button <- function(inputId, label = "", style = "simple",
+                            css_style = NULL, ...) {
+  if (is.null(css_style)) {
+    css_style <- paste(
+      "background: transparent",
+      "right: 38px",
+      "top: 2px",
+      "position: absolute",
+      sep = "; "
+    )
+  }
+  shinyWidgets::downloadBttn(
+    inputId, label = label, style = style, ...
+  ) |>
+    htmltools::tagAppendAttributes(
+      style = css_style
+    )
+}
+

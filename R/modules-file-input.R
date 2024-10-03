@@ -107,3 +107,18 @@ fileInputServer <- function(id, default_data = NULL) {
     })
   })
 }
+
+
+#' Check if file is uploaded
+#'
+#' @inheritParams fileInputModule
+#'
+#' @export
+isFileUploaded <- function(id) {
+  shiny::moduleServer(id, function(input, output, session) {
+    reactive({
+      file_type <- stringr::str_extract(input$file$datapath, "(\\.[^.]*)$")
+      return(!identical(file_type, character(0)))
+    })
+  })
+}

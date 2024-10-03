@@ -41,3 +41,16 @@ add_tooltip <- function(id, tooltip, placement = "right", allowHTML = TRUE,
     id, tooltip, placement = placement, allowHTML = allowHTML, ...
   )
 }
+
+
+#' Format tooltips
+#'
+#' @param tooltip The tooltip to add.
+#' @param size Font size
+#'
+#' @return Formatted tooltip
+#'
+#' @export
+format_tooltip <- function(tooltip, size = 14) {
+  sprintf("<span style='font-size: %spx;'>%s</span>", size, tooltip)
+}

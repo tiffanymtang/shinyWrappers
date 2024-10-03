@@ -4,14 +4,21 @@
 \alias{textBoxModule}
 \alias{textboxUI}
 \alias{textboxServer}
+\alias{reactiveTextboxServer}
 \title{Basic text box module}
 \usage{
 textboxUI(id)
 
 textboxServer(id, text)
+
+reactiveTextboxServer(id, reactive_text)
 }
 \arguments{
 \item{id}{Unique identifier.}
+
+\item{text}{Text to display.}
+
+\item{reactive_text}{Text to display. Text must be a reactive expression.}
 }
 \description{
 Shiny module (UI and server-side functions) to display text.
