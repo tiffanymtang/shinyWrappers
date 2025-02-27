@@ -29,4 +29,6 @@ Imports:
     shinyWidgets,
     stringr,
     tippy,
-    vthemes
+    vthemes (>= 0.1.0)
+Remotes:  
+    Yu-Group/vthemes
